@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  # MySQL Database
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: test12345
+      MYSQL_DATABASE: products
+      MYSQL_USER: test
+      MYSQL_PASSWORD: testPassword
+    ports:
+      - "3306:3306"
+  
+  # Go Application
+  mygolangapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URI: root:test12345@tcp(127.0.0.1:3306)/products?charset=utf8mb4&parseTime=True&loc=Local
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql

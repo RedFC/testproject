@@ -1,0 +1,596 @@
+{
+	"info": {
+		"_postman_id": "070df85e-5e38-49fc-8674-781e0fca229f",
+		"name": "Go Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26120027"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\": \"saad\",\r\n    \"Email\": \"saad1222@gmail.com\",\r\n    \"Password\": \"saad12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{appurl}}/user/register",
+							"host": [
+								"{{appurl}}"
+							],
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"token\",jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Email\": \"saad1@gmail.com\",\r\n    \"Password\": \"saad12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{appurl}}/user/login",
+							"host": [
+								"{{appurl}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{appurl}}/products",
+							"host": [
+								"{{appurl}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/v1/products",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 28 Nov 2023 13:05:59 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "276"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Iphone 15 pro max\",\n            \"description\": \"Apple iPhone 15 5G 6GB 128GB Black\",\n            \"price\": 3599.01,\n            \"created_at\": \"2023-11-28T13:10:39.563+05:00\",\n            \"updated_at\": \"2023-11-28T13:10:39.563+05:00\",\n            \"deleted_at\": null\n        }\n    ],\n    \"message\": \"Products Fetched SuccessFully\",\n    \"status\": 200\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Product By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\": \"Iphone 15 pro max\",\r\n    \"Description\": \"Apple iPhone 15 5G 6GB 128GB Black\",\r\n    \"Price\": 3599.01\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{appurl}}/products/1",
+							"host": [
+								"{{appurl}}"
+							],
+							"path": [
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Name\": \"Iphone 15 pro max\",\r\n    \"Description\": \"Apple iPhone 15 5G 6GB 128GB Black\",\r\n    \"Price\": 3599.01\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/v1/products/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"products",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 28 Nov 2023 08:19:29 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "273"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Iphone 15 pro max\",\n        \"description\": \"Apple iPhone 15 5G 6GB 128GB Black\",\n        \"price\": 3599.01,\n        \"created_at\": \"2023-11-28T13:10:39.563+05:00\",\n        \"updated_at\": \"2023-11-28T13:10:39.563+05:00\",\n        \"deleted_at\": null\n    },\n    \"message\": \"Product Fetched SuccessFully\",\n    \"status\": 200\n}"
+						},
+						{
+							"name": "Product not found failure",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Name\": \"Iphone 15 pro max\",\r\n    \"Description\": \"Apple iPhone 15 5G 6GB 128GB Black\",\r\n    \"Price\": 3599.01\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/v1/products/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"products",
+										"2"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 28 Nov 2023 08:19:47 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "29"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Product not found\"\n}"
+						},
+						{
+							"name": "Invalid id failure",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Name\": \"Iphone 15 pro max\",\r\n    \"Description\": \"Apple iPhone 15 5G 6GB 128GB Black\",\r\n    \"Price\": 3599.01\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/v1/products/223ss",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"products",
+										"223ss"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 28 Nov 2023 08:20:52 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "30"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Invalid Product ID\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\": \"Iphone 13 pro max\",\r\n    \"Description\": \"Apple iPhone 13 5G 6GB 128GB Black\",\r\n    \"Price\": 3599.01\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{appurl}}/products",
+							"host": [
+								"{{appurl}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Created Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Name\": \"Iphone 15 pro max\",\r\n    \"Description\": \"Apple iPhone 15 5G 6GB 128GB Black\",\r\n    \"Price\": 3599.01\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/v1/products",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"products"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 28 Nov 2023 08:10:39 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "282"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Iphone 15 pro max\",\n        \"description\": \"Apple iPhone 15 5G 6GB 128GB Black\",\n        \"price\": 3599.01,\n        \"created_at\": \"2023-11-28T13:10:39.5634211+05:00\",\n        \"updated_at\": \"2023-11-28T13:10:39.5634211+05:00\",\n        \"deleted_at\": null\n    },\n    \"message\": \"Products Created SuccessFully\",\n    \"status\": 200\n}"
+						},
+						{
+							"name": "Validation Failure",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Name\": \"Iphone 15 pro max\",\r\n    \"Description\": \"Apple iPhone 15 5G 6GB 128GB Black\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/v1/products",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"products"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 28 Nov 2023 08:11:22 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "60"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Invalid input data Product 'Price' is required !\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\": \"Iphone 13 pro max\",\r\n    \"Description\": \"Apple iPhone 13 5G 6GB 128GB Black\",\r\n    \"Price\": 2000.01\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{appurl}}/products/2",
+							"host": [
+								"{{appurl}}"
+							],
+							"path": [
+								"products",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Product Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhYWRAZ21haWwuY29tIiwiZXhwIjoxNzAxMTgwMDIxLCJpZCI6MSwibmFtZSI6InNhYWQifQ.RoS5KcBYi1co1WiBXC5gVFsrYy69MzlwCqzUmfABjwg",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Name\": \"Iphone 13 pro max\",\r\n    \"Description\": \"Apple iPhone 13 5G 6GB 128GB Black\",\r\n    \"Price\": 2000.01\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{appurl}}/products/2",
+									"host": [
+										"{{appurl}}"
+									],
+									"path": [
+										"products",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 28 Nov 2023 13:20:01 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "210"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"name\": \"Iphone 13 pro max\",\n    \"description\": \"Apple iPhone 13 5G 6GB 128GB Black\",\n    \"price\": 2000.01,\n    \"created_at\": \"2023-11-28T18:07:54.914+05:00\",\n    \"updated_at\": \"2023-11-28T18:20:01.861+05:00\",\n    \"deleted_at\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{appurl}}/products/2",
+							"host": [
+								"{{appurl}}"
+							],
+							"path": [
+								"products",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Product Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhYWRAZ21haWwuY29tIiwiZXhwIjoxNzAxMTgwMDIxLCJpZCI6MSwibmFtZSI6InNhYWQifQ.RoS5KcBYi1co1WiBXC5gVFsrYy69MzlwCqzUmfABjwg",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{appurl}}/products/2",
+									"host": [
+										"{{appurl}}"
+									],
+									"path": [
+										"products",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 28 Nov 2023 13:29:26 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "273"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 2,\n        \"name\": \"Iphone 13 pro max\",\n        \"description\": \"Apple iPhone 13 5G 6GB 128GB Black\",\n        \"price\": 2000.01,\n        \"created_at\": \"2023-11-28T18:07:54.914+05:00\",\n        \"updated_at\": \"2023-11-28T18:20:01.861+05:00\",\n        \"deleted_at\": null\n    },\n    \"message\": \"Product Deleted SuccessFully\",\n    \"status\": 200\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
